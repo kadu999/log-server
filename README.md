@@ -20,6 +20,13 @@ start.bat 9101
 start.bat 9101 D:\logs
 ```
 
+To open the firewall port separately:
+
+```bat
+allow-firewall.bat
+allow-firewall.bat 9101
+```
+
 The default port is `9101`. `start.bat` automatically opens the TCP firewall port when run with administrator permission.
 The script uses UTF-8 code page so Chinese paths are not garbled in the console.
 The default upload directory is `uploads\` under this repository. You can override it with the second argument.
