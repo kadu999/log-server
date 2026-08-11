@@ -17,9 +17,11 @@ Windows one-click startup:
 ```bat
 start.bat
 start.bat 9000
+start.bat 9000 D:\logs
 ```
 
 The script uses UTF-8 code page so Chinese paths are not garbled in the console.
+The default upload directory is `uploads\` under this repository. You can override it with the second argument.
 
 Chinese paths can be sent URL-encoded:
 
