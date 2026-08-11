@@ -52,7 +52,11 @@ class UploadHandler(BaseHTTPRequestHandler):
 
     def _read_file_path(self):
         parsed = urlparse(self.path)
-        header_path = self.headers.get("X-File-Path")
+        raw_header = self.headers.get("X-File-Path", "")
+        try:
+            header_path = raw_header.encode("latin-1").decode("utf-8")
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            header_path = raw_header
         query_path = parsed.query
         if query_path.startswith("path="):
             query_path = unquote(query_path[len("path="):])

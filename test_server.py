@@ -4,6 +4,7 @@ import threading
 import unittest
 import urllib.error
 import urllib.request
+from urllib.parse import quote
 
 from server import ThreadedUploadServer, UploadHandler
 
@@ -46,6 +47,22 @@ class UploadServerTest(unittest.TestCase):
         with self.assertRaises(urllib.error.HTTPError) as ctx:
             urllib.request.urlopen(request)
         self.assertEqual(ctx.exception.code, 400)
+
+    def test_upload_creates_chinese_subdirectories(self):
+        body = "中文日志内容".encode("utf-8")
+        encoded_path = quote("设备/日志/测试.log", safe="/")
+        request = urllib.request.Request(
+            f"{self.base}/upload?path={encoded_path}",
+            data=body,
+            method="POST",
+        )
+        with urllib.request.urlopen(request) as response:
+            self.assertEqual(response.status, 200)
+
+        target = os.path.join(self.upload_dir, "设备", "日志", "测试.log")
+        self.assertTrue(os.path.isfile(target))
+        with open(target, "rb") as fh:
+            self.assertEqual(fh.read(), body)
 
 
 if __name__ == "__main__":

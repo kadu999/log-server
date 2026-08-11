@@ -12,6 +12,24 @@ python server.py --port 8000
 
 Files are stored in `uploads/`.
 
+Windows one-click startup:
+
+```bat
+start.bat
+start.bat 9000
+```
+
+The script uses UTF-8 code page so Chinese paths are not garbled in the console.
+
+Chinese paths can be sent URL-encoded:
+
+```bash
+curl -X POST \
+  -H "X-File-Path: %E8%AE%BE%E5%A4%87/%E6%97%A5%E5%BF%97/app.log" \
+  --data-binary @app.log \
+  http://localhost:8000/upload
+```
+
 ## Upload
 
 ```bash
