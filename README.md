@@ -24,6 +24,22 @@ The default port is `9101`. `start.bat` automatically opens the TCP firewall por
 The script uses UTF-8 code page so Chinese paths are not garbled in the console.
 The default upload directory is `uploads\` under this repository. You can override it with the second argument.
 
+## Public URL
+
+To expose the server to external users with a temporary public URL:
+
+```bat
+tunnel.bat
+```
+
+`tunnel.bat` downloads `cloudflared` automatically, starts the local server, and prints a URL like:
+
+```text
+https://xxxx.trycloudflare.com
+```
+
+External users can upload logs to that URL. The URL is temporary and changes each time `tunnel.bat` runs.
+
 Chinese paths can be sent URL-encoded:
 
 ```bash
