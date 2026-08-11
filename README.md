@@ -7,7 +7,7 @@ It accepts one file per POST. If `X-File-Path` contains subdirectories, those di
 ## Run
 
 ```bash
-python server.py --port 8000
+python server.py --port 9101
 ```
 
 Files are stored in `uploads/`.
@@ -16,10 +16,11 @@ Windows one-click startup:
 
 ```bat
 start.bat
-start.bat 9000
-start.bat 9000 D:\logs
+start.bat 9101
+start.bat 9101 D:\logs
 ```
 
+The default port is `9101`. `start.bat` automatically opens the TCP firewall port when run with administrator permission.
 The script uses UTF-8 code page so Chinese paths are not garbled in the console.
 The default upload directory is `uploads\` under this repository. You can override it with the second argument.
 
